@@ -1,6 +1,67 @@
 {% extends 'core/base.html' %}
 
-{% block content %}
-<p>Soy el Home dentro del bloque</p>
+{% block title %}Inicio - Catálogo Digital de Arte{% endblock %}
 
+{% block content %}
+<div class="container py-5">
+
+    <!-- Sección de bienvenida -->
+    <div class="row align-items-center mb-5">
+        <div class="col-md-6">
+            <h2 class="mb-3">Bienvenido a ArteGOD</h2>
+            <p class="lead">
+                Explora nuestra Galeria digital de arte donde encontrarás obras únicas 
+                de artistas emergentes y consagrados. Queremos acercar el arte a todos 
+                mediante una experiencia digital interactiva.
+            </p>
+            <!-- Botón temporal sin enlace a otra página -->
+            <a href="/galeriaimagenes/" class="btn btn-primary btn-lg mt-3">Ver Galeria de Imagenes</a>
+        </div>
+        <div class="col-md-6">
+            <img src="https://i0.wp.com/hotbook.mx/wp-content/uploads/2014/10/hotbook-94.jpg?w=1024&ssl=1"
+                 class="img-fluid rounded shadow" alt="Obra de arte">
+        </div>
+    </div>
+
+    <!-- Bloque dinámico: Obras destacadas -->
+    <section class="mb-5">
+        <h2 class="mb-4">Obras Destacadas</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for obra in obras %}
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="{{ obra.imagen_url }}" class="card-img-top" alt="{{ obra.titulo }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ obra.titulo }}</h5>
+                        <p class="card-text text-muted">{{ obra.artista }}</p>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col">
+                <p>No hay obras destacadas disponibles.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Bloque dinámico: Noticias o eventos -->
+    <section>
+        <h2 class="mb-4">Noticias y Eventos</h2>
+        <div class="list-group">
+            {% for noticia in noticias %}
+            <div class="list-group-item list-group-item-action mb-2 shadow-sm">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{{ noticia.titulo }}</h5>
+                    <small class="text-muted">{{ noticia.fecha }}</small>
+                </div>
+                <p class="mb-1">{{ noticia.descripcion }}</p>
+            </div>
+            {% empty %}
+            <p>No hay noticias en este momento.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+</div>
 {% endblock %}
