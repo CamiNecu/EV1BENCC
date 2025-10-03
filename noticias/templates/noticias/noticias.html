@@ -1,0 +1,18 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Noticias - ArteGOD{% endblock %}
+
+{% block content %}
+
+<div class="row gx-4 gx-lg-5 justify-content-center">
+    <h1>Noticias</h1> 
+<hr>
+{% for n in noticia %}
+<h2><p>{{ n.titulo }}</p></h2>
+<p>{{ n.detalle }}</p>
+<img src="{{ n.imagen.url }}" alt="foto">
+<hr>
+{% endfor %}        
+</div>
+
+{% endblock %}
