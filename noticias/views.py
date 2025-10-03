@@ -1,3 +1,6 @@
 from django.shortcuts import render
-
-# Create your views here.
+from .models import Noticia
+def Noticias(request):
+    noticia=Noticia.objects.all()
+    return render(request,"posteo/noticias.html",
+                  {"noticia":noticia})
