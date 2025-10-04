@@ -4,16 +4,32 @@
 {% block title %}Noticias - ArteGOD{% endblock %}
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'noticias/style2.css' %}">
 
-<div class="row gx-4 gx-lg-5 justify-content-center">
-    <h1>Noticias</h1> 
-<hr>
-{% for n in noticia %}
-<h2><p>{{ n.titulo }}</p></h2>
-<p>{{ n.detalle }}</p>
-<img src="{{ n.imagen.url }}" alt="foto">
-<hr>
-{% endfor %}        
+<div class="container py-5">
+  <h1 class="text-center mb-5 display-5 fw-bold border-bottom pb-3">Noticias!</h1>
+
+  <div class="row gy-5">
+    {% for n in noticia %}
+      <div class="col-12 col-md-10 mx-auto">
+        <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+          {% if n.imagen %}
+            <img src="{{ n.imagen.url }}" class="card-img-top noticia-img" alt="{{ n.titulo }}">
+          {% endif %}
+          <div class="card-body p-4">
+            <h3 class="card-title text-primary fw-bold">{{ n.titulo }}</h3>
+            <p class="card-text mt-3 text-muted">{{ n.detalle }}</p>
+            <p class="text-end text-secondary small mt-3 mb-0">
+              🕒 Publicado el {{ n.created|date:"d/m/Y H:i" }}<br>
+              🔄 Actualizado el {{ n.updated|date:"d/m/Y H:i" }}
+            </p>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p class="text-center text-muted">No hay noticias disponibles por el momento.</p>
+    {% endfor %}
+  </div>
 </div>
 
 {% endblock %}
