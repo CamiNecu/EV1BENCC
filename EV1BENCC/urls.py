@@ -26,7 +26,7 @@ urlpatterns = [
     path('quienes/', views_core.quienes, name='Quienes somos'),
     path('preguntasfrecuentes/', views_core.preguntasfre, name='Preguntas frecuentes'),
     path('galeriaimagenes/', views_core.galimagenes, name='Galeria de imagenes'),
-    path('noticia/',views_noticias.Noticias,name="Noticia"),
+    path('noticias/',views_noticias.Noticias,name="noticias"),
     path('admin/', admin.site.urls),
 ]
 if settings.DEBUG:
