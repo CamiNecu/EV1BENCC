@@ -4,6 +4,8 @@
 {% block title %}Inicio - ArteGOD{% endblock %}
 
 {% block content %}
+<!-- Plantilla de la página de inicio. Muestra un bloque de bienvenida y
+  una lista de obras destacadas pasada desde la vista `home` como 'obras'. -->
 
 <!--fuente-->
 <link href="https://fonts.googleapis.com/css2?family=Kite+One&display=swap" rel="stylesheet">
@@ -36,7 +38,7 @@
         </div>
     </div>
 
-<!-- Bloque dinámico: Obras destacadas -->
+<!-- Bloque dinámico: Obras destacadas (se itera sobre 'obras' en el contexto) -->
 <section class="mb-5">
   <h2 class="mb-4">Obras Destacadas</h2>
   <div class="row row-cols-1 row-cols-md-3 g-4">
