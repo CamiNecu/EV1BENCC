@@ -7,10 +7,10 @@
 <link rel="stylesheet" href="{% static 'noticias/style2.css' %}">
 
 <div class="container py-5">
-  <h1 class="text-center mb-5 display-5 fw-bold border-bottom pb-3">Noticias!</h1>
+  <h1 class="text-center mb-5 display-5 fw-bold border-bottom pb-3">¡Noticias!</h1>
 
   <div class="row gy-5">
-    {% for n in noticia %}
+    {% for n in page_obj %}
       <div class="col-12 col-md-10 mx-auto">
         <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
           {% if n.imagen %}
@@ -30,6 +30,44 @@
       <p class="text-center text-muted">No hay noticias disponibles por el momento.</p>
     {% endfor %}
   </div>
-</div>
 
+  <!-- PAGINACIÓN -->
+  <div class="d-flex justify-content-center mt-5">
+    <nav aria-label="Paginación de noticias">
+      <ul class="pagination">
+        {% if page_obj.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+          </li>
+        {% else %}
+          <li class="page-item disabled">
+            <span class="page-link">Anterior</span>
+          </li>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+          {% if page_obj.number == num %}
+            <li class="page-item active">
+              <span class="page-link">{{ num }}</span>
+            </li>
+          {% else %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+            </li>
+          {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+          </li>
+        {% else %}
+          <li class="page-item disabled">
+            <span class="page-link">Siguiente</span>
+          </li>
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
+</div>
 {% endblock %}
